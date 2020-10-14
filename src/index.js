@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
+    clickHandler();
     fetchDogs();
 })
 
@@ -19,7 +19,20 @@ const addDogs = (dogs) => {
 }
 
 const addDogToDom = (dog) => {
-    let table = document.querySelector('tr')
-    
+    let table = document.querySelector('#table-body')
+
+
+    table.innerHTML= `
+    <tr><td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button class="edit">Edit</button></td></tr>
+    `
 }
 
+const clickHandler = () =>{
+    document.addEventListener('click', e => {
+        if(e.target.matches('.edit')){
+            let form = e.target
+            
+
+        }
+    })
+}
