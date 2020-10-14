@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const dogUrl = 'http://localhost:3000/dogs'
+  const dogUrl = 'http://localhost:3000/dogs/'
 
   const fetchDogs = () => {
     fetch(dogUrl)
@@ -31,23 +31,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = form.querySelector(`[name='name']`)
     const breed = form.querySelector(`[name='breed']`)
     const sex = form.querySelector(`[name='sex']`)
-    const id = document.createElement('input')
-    id.setAttribute('type', 'hidden')
-    id.setAttribute('value', $tr.dataset.id)
+    const id = document.querySelector(`[name='id']`)
     name.value = trChildren[0].innerHTML
     breed.value = trChildren[1].innerHTML
     sex.value = trChildren[2].innerHTML
+    id.value = tr.dataset.id
   }
 
-  const updateDog = () => {
+  const updateDog = (form) => {
+    const name = form.children[0].value
+    const breed = form.children[1].value
+    const sex = form.children[2].value
+    const id = form.children[3].value
+    const object = {name: name, breed: breed, sex: sex}
+    const options = {
+      method: 'patch',
+      headers:{
+        'content-type' : 'application/json',
+        'accepts' : 'application/json'
+      },
+      body: JSON.stringify(object)
+    }
+    console.log(dogUrl + id)
 
+    fetch(dogUrl + id, options, { mode: 'no-cors'})
+    .then(resp => resp.json())
+    .then(console.log)
   }
 
   const submitHandler = () => {
     document.addEventListener('submit', e => {
       const form = e.target
       if(form.matches('#dog-form')){
-
+        updateDog(form)
         e.preventDefault();
       }
     })
