@@ -3,18 +3,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseURL = 'http://localhost:3000/dogs/'
 
 
-
     const getDogs = () => {
         fetch(baseURL)
         .then(response => response.json())
         .then(dogs => renderDogs(dogs))
     }
 
+
     const renderDogs = (dogs) => {
         for (const dog of dogs) {
             renderDog(dog)
         }
     }
+
+
 
     const renderDog = (dog) => {
         const tableBody = document.querySelector('#table-body') 
@@ -55,10 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 form.dataset.id = row.dataset.id
 
-                console.log('SUCCESS')
+                console.log('Edit is Clicked!')
 
             }
         })
+    
     }
 
 
@@ -75,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const id = form.dataset.id
 
             const options = {
-                method: 'POST',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -85,9 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fetch(baseURL + id, options)
             .then(response => response.json())
-            .then(dog => {getDogs()})
+            .then(dog => {reload()})
         })
     }    
+
+
+    const reload = () => {
+        location.reload();
+    }
 
 
     submitHandler()
