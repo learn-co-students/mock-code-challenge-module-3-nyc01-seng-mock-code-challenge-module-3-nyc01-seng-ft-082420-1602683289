@@ -2,13 +2,13 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Old ass man",
-      "breed": "Scottish Deerhound",
-      "sex": "male"
+      "name": "boy",
+      "breed": "dog",
+      "sex": "female"
     },
     {
       "id": 2,
-      "name": "Delano",
+      "name": "peepee",
       "breed": "Rhodesian Ridgeback",
       "sex": "female"
     },

@@ -56,6 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const sex = form.sex.value
             const dogId = form.dataset.dogId
             const table = document.querySelector('#table')
+            const rowToUpdate = table.querySelector(`[data-dog-id="${dogId}"]`)
+            rowToUpdate.children[0].innerText = name
+            rowToUpdate.children[1].innerText = breed
+            rowToUpdate.children[2].innerText = sex
             const dogObj = { name: name, breed: breed, sex: sex }
             const options = {
                 method: "PATCH",
@@ -70,10 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then()
                 
-                    
-            fetch(DOGS_URL)
-                .then(response => response.json())
-                .then(dogs => renderDogs(dogs))    
               
 
             
