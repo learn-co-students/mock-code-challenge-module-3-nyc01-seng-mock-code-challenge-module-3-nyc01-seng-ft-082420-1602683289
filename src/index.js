@@ -31,50 +31,55 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${dog.name}</td> 
         <td>${dog.breed}</td> 
         <td>${dog.sex}</td> 
-        <td><button>Edit</button></td>
+        <td><button data-id=${dog.id}}>Edit</button></td>
         </tr>
         `
         tableBody.append(dogRow)
     }
 
-    // Clicking on the edit button next to a dog should populate the top form with that dog's current information.
+    /* Clicking on the edit button next to a dog should populate the top form with that dog's current information. */
     const clickHandler = () => {
         document.addEventListener("click", (e) => {
             if (e.target.matches("button")){
-                // const editButton = document.querySelector("button")
-                // the edit button is a child element of the row, which contains the dataset-id
-                // maybe try and traverse up the DOM?
-
-                // select the edit form element
                 const form = document.querySelector("#dog-form")
                 // the text of the input form should be the dog's name, breed, and sex
-                form.text.name = dog.name //dog is not defined
-                form.text.breed = dog.breed
-                form.text.sex = dog.sex
+                form.name.value = dog.name
+                form.breed.value = dog.breed
+                form.sex.value = dog.sex
             }
         })
     }
 
-    // to update this upon submitting
-    // const submitHandler = () => {
-        // document.addEventListener("submit", (e) => {
-            // e.preventDefault();
-            // const options = {
-                //     method: "PATCH"
-                //     headers: {
-                //         "content-type": "application/json",
-                //         ""
-                //     }
-                //      body: JSON.stringify()
-                // }
+    /* NEED TO TEST - update table upon submitting */
+    const submitHandler = () => {
+        document.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const options = {
+                    method: "PATCH",
+                    headers: {
+                        "content-type": "application/json",
+                        "": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: dog.name,
+                        breed: dog.breed,
+                        sex: dog.sex
+                })
+                }
 
-            // new get request by fetching after updating
-                // getDogs();
-        // })
-    // }
+            /* new get request */
+                const getDogs = () => {
+                    fetch(baseUrl, options)
+                        .then(response => response.json)
+                        .then(renderDogs(options))
+                }
+                getDogs();
+        })
+    }
             
 
 
     getDogs();
     clickHandler();
+    // submitHandler();
 })
