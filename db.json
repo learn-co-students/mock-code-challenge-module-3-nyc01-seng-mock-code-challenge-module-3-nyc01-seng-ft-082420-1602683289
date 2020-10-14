@@ -137,6 +137,36 @@
       "breed": "Mexicanhairless",
       "sex": "female",
       "id": 23
+    },
+    {
+      "name": "Forky",
+      "breed": "Toy Terrier",
+      "sex": "male",
+      "id": 24
+    },
+    {
+      "name": "Forky",
+      "breed": "Toy Terrier",
+      "sex": "male",
+      "id": 25
+    },
+    {
+      "name": "Forky",
+      "breed": "Toy Terrier",
+      "sex": "male",
+      "id": 26
+    },
+    {
+      "name": "Forky",
+      "breed": "Toy Terrier",
+      "sex": "male",
+      "id": 27
+    },
+    {
+      "name": "Forky",
+      "breed": "Toy Terrier",
+      "sex": "male",
+      "id": 28
     }
   ]
 }

@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const form =document.createElement('form')
     form.innerHTML = `
     <form id="new-dog-form" class="padding margin border-round border-grey">
-        <input type="text" name="name" placeholder="dog's name" value="">
-        <input type="text" name="breed" placeholder="dog's breed" value="">
-        <input type="text" name="sex" placeholder="dog's sex" value="">
+        <input type="text" name="name" placeholder="dog's name" id = "dog-name-input" value="">
+        <input type="text" name="breed" placeholder="dog's breed" id = "dog-breed-input" value="">
+        <input type="text" name="sex" placeholder="dog's sex" id = "dog-sex-input" value="">
         <input type="submit" value="Submit">
       </form>
     `
@@ -96,7 +96,30 @@ document.addEventListener('DOMContentLoaded', () => {
     newDogBtn.addEventListener('click', e => {
       const newForm = renderForm()
       newDogBtn.insertAdjacentElement('afterend', newForm)
+      const nameInput = document.getElementById('dog-name-input')
+      const breedInput = document.getElementById('dog-breed-input')
+      const sexInput = document.getElementById('dog-sex-input')
 
+      newForm.addEventListener('submit', e => {
+        e.preventDefault()
+        options = {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "accept": "application/json"
+          },
+          body: JSON.stringify({
+            name: nameInput.value,
+            breed: breedInput.value,
+            sex: sexInput.value,
+          })
+        }
+        fetch(dogUrl, options)
+        .then(response=> response.json())
+        .then(data => getDogs())
+
+        newForm.reset()
+      })
       //  1) grab values from form
       //  2) fetch POST to localhost3000/dogs
       //  3) assign values from Step 1 to Body of POST
