@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.matches("button")){
                 const form = document.querySelector("#dog-form")
                 // the text of the input form should be the dog's name, breed, and sex
-                form.name.value = dog.name
-                form.breed.value = dog.breed
-                form.sex.value = dog.sex
+                form.name.value = `${dog.name}`
+                form.breed.value = `${dog.breed}`
+                form.sex.value = `${dog.sex}`
             }
         })
     }
