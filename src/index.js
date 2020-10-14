@@ -1,6 +1,6 @@
 /* Deliverables:
-1. On page load, render a list of already registered dogs in the table. You can fetch these dogs from http://localhost:3000/dogs.
-2. The dog should be put on the table as a table row. 
+1. ✅ On page load, render a list of already registered dogs in the table. You can fetch these dogs from http://localhost:3000/dogs.
+2. ✅ The dog should be put on the table as a table row. 
     The HTML might look something like this 
     <tr><td>Dog *Name*</td> <td>*Dog Breed*</td> <td>*Dog Sex*</td> <td><button>Edit</button></td></tr>
 3. Make a dog editable. Clicking on the edit button next to a dog should populate the top form with that dog's current information.
@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log(dogs)
     }
     
-    // render dogs
     const renderDogs = dogs => {
         for (let dog of dogs)
         renderDog(dog)
@@ -41,6 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `
         // remember to append to tableBody
         tableBody.append(dogRow)
+    }
+
+    // Clicking on the edit button next to a dog should populate the top form with that dog's current information.
+    const clickHandler = () => {
+        document.addEventListener("click", (e) => {
+
+        })
     }
 
 
