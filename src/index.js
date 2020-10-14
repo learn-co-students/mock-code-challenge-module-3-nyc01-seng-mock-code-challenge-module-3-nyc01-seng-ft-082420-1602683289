@@ -46,11 +46,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableBod = document.getElementById('table-body')
 
     const tableRow = document.createElement('tr')
+    tableRow.classList.add('dog-info')
     tableRow.innerHTML = `
     <td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-id="${dog.id}">Edit</button></td>`
 
     tableBod.append(tableRow)
   }
 
+  const clickhandler = () => {
+    document.addEventListener('click', e => {
+      if (e.target.matches('button')) {
+        const editButton = e.target
+        const form = document.getElementById('dog-form')
+        let editDogName = form.name.value
+        let editDogBreed = form.breed.value
+        let editDogSex = form.sex.value
+        const dogInfo = document.getElementsByClassName('dog-info')
+        const dogInfoName = dogInfo[0].children[0].textContent
+        editDogName = dogInfoName
+        console.log(editDogName)
+        
+        
+
+      }
+    })
+  }
+
+  clickhandler()
   getDogs()
 })
