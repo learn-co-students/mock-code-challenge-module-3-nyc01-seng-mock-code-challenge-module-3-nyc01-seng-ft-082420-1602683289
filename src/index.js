@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const baseUrl = "http://localhost:3000/dogs"
+    const baseUrl = "http://localhost:3000/dogs/"
     const dogListBody = document.querySelector('#table-body')
-    let dogId = 0
+    
 
     const renderDogList = (dogs) => {
+        dogListBody.innerHTML = ''
         for (const dog of dogs) {
             renderDogRow(dog)
         }
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newDogRow.innerHTML = `<tr><td>${dog.name}</td> 
         <td>${dog.breed}</td> 
         <td>${dog.sex}</td> 
-        <td><button class="edit-button" data-id="${dog.id}">Edit</button></td></tr>`
+        <td><button class="edit-button" data-dog-id="${dog.id}">Edit</button></td></tr>`
 
     }
 
@@ -28,16 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const clickHandler = () => {
         document.addEventListener('click', e => {
             if (e.target.matches('.edit-button')) {
-                dogId = e.target.dataset.id
-                //console.log(dogId)
-                let dogRow = e.target.parentElement.parentElement
-                const dogForm = document.querySelector('#dog-form')
-                let dogName = dogRow.cells[0].innerHTML
-                let dogBreed = dogRow.cells[1].innerHTML
-                let dogSex = dogRow.cells[2].innerHTML
-                dogForm.querySelector("#name").value = dogName
-                dogForm.querySelector("#breed").value = dogBreed
-                dogForm.querySelector("#sex").value = dogSex
+                const editButton = e.target
+                let dogRow =  editButton.closest('tr') //e.target.parentElement.parentElement 
+                const form = document.querySelector('#dog-form')
+                let dogName = dogRow.cells[0].textContent
+                let dogBreed = dogRow.cells[1].textContent
+                let dogSex = dogRow.cells[2].textContent
+                form.name.value = dogName
+                form.breed.value = dogBreed
+                form.sex.value = dogSex
+                dogId = editButton.dataset.dogId
+                form.setAttribute('data-dog-id', `${dogId}`)
             } 
         })
     }
@@ -48,9 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const form = e.target
             const name = form.name.value
             const breed = form.breed.value
-            const sex = form.breed.value
-            const id = DogId
-            const newDog = { id: id, name: name, breed: breed, sex: sex }
+            const sex = form.sex.value
+            const id = form.dataset.dogId
+            const editDog = { name: name, breed: breed, sex: sex }
+
+
+            console.log(id)
 
             const options = {
                 method: "PATCH",
@@ -58,17 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     "content-type": "appplication/json",
                     "accept": "application/json"
                 },
-                body: JSON.stringify(newDog)
+                body: JSON.stringify(editDog)
             }
 
+            fetch(baseUrl + id, options)
+            .then (response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+            })
+            .then (_dog => getDogs())
+            
 
 
+            
             form.reset()
         })
     }
 
     getDogs()
     clickHandler()
+    submitHandler()
 })
 
 
