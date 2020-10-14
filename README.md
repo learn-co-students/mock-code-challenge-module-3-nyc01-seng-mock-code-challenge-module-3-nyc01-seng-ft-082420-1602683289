@@ -1,4 +1,5 @@
 # Westminster Kennel Club Dog Show
+### Gabriel Hicks 10/14/2020
 
 You are responsible for managing the website for the Westminster Kennel Club Dog Show. These dog owners are _very_ competitive. We need to make sure that they can view all the competition (the other dogs) and edit their dog's information.
 
