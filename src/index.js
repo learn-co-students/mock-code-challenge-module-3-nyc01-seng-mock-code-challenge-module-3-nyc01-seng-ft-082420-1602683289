@@ -10,23 +10,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         
     }
-    getDogs()
+    //getDogs()
 
     const renderDogs = dogs => {
         dogs.forEach(dogObj => {
-            renderDog(dogObj)
+            renderDogs(dogObj)
         })
-
+        
     }
 
     const renderDog = (dogObj) => {
-        const dogInfo = document.createElement("div")
+        const dogTr = document.createElement('tr')
+        
+        dogTr.classList.add("dog")
+        dogTr.dataset.dogId = dogObj.dogId
+
+        dogTr.innerHTML = `<tr><td>Dog *Name*</td> 
+        <td>*Dog Breed*</td> 
+        <td>*Dog Sex*</td> 
+        <
+        
+        
+        
+        
+        
         
 
-
-        //`<tr><td>Dog *Name*</td> <td>*Dog Breed*</td> <td>*Dog Sex*</td> <td><button>Edit</button></td></tr>`
+    
 
     }
+
+        
+
+      //`<tr><td>Dog *Name*</td> <td>*Dog Breed*</td> <td>*Dog Sex*</td> <td><button>Edit</button></td></tr>`
+
+
 
 
     
