@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const renderDog = (dog, dogTableBody) => {
         const dogRow = document.createElement("tr")
         dogRow.innerHTML = `
-        <td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-dog-id ="${dog.id}">Edit</button></td>
+        <td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-purpose="edit" data-dog-id="${dog.id}">Edit</button></td>
         `
         dogTableBody.append(dogRow)
     }
@@ -25,13 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const getDogs = () => {
         fetch (baseUrl)
         .then(response => response.json())
-        //.then(console.log)
         .then(dogs => {
             renderDogs(dogs)
         })
     }
+    
+    // Edit dog - clickHandler to edit (populate form with current info)
+    const clickHandler = () => {
+        document.addEventListener("click", e => {
+            if(e.target.matches(`[data-purpose="edit"]`)){
+                const button = e.target
+                const dogId = button.dataset.dogId
+                console.log(dogId)
+            }
+        })
+    }
+
+
+
 
  
     getDogs()
+    clickHandler()
 
 });
