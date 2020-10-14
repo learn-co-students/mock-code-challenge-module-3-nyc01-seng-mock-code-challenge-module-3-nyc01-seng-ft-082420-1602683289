@@ -1,16 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-fetchDogs
+//fetchDogs
 
 })
 
-const fetchDogs = () => {
+//const fetchDogs = () => {
 fetch('http://localhost:3000/dogs')
 .then(resp => resp.json())
 .then(dogs => renderDogs(dogs));
-
-}
+//}
 
 const renderDogs = (dogs) => {
 for(const dog of dogs){
@@ -21,11 +20,19 @@ for(const dog of dogs){
 const addDogToDom = (dog) => {
     const tableBody = document.getElementById('table-body')
     const dogDiv = document.createElement('div')
-    dogDiv.dataset.id('dog.id')
-
-
+    let ul = document.querySelector('.dogUl')
+    dogDiv.dataset.id = dog.id
+    dogDiv.innerHTML = `
+    <tr>
+        <td>Dog *Name*</td>
+        <td>*Dog Breed*</td> 
+        <td>*Dog Sex*</td>
+        <td><button>Edit</button></td>
+    </tr>
+    <ul class="dogUl">
+    </ul>
+    `
     tableBody.appendChild(dogDiv)
-
 }
 
 
