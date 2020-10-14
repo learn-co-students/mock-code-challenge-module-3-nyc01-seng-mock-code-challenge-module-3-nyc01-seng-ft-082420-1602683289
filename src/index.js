@@ -39,14 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dogInfo = dogRow.querySelectorAll('td')
 
-        const dogName = dogInfo[0].textContent
-        const dogBreed = dogInfo[1].textContent
-        const dogSex = dogInfo[2].textContent
-
         editForm.dataset.dogId = dogId
-        editForm.name.value = dogName
-        editForm.breed.value = dogBreed
-        editForm.sex.value = dogSex
+        editForm.name.value = dogInfo[0].textContent
+        editForm.breed.value = dogInfo[1].textContent
+        editForm.sex.value = dogInfo[2].textContent
       } 
     })
   }
