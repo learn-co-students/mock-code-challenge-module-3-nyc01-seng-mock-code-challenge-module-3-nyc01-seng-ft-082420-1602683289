@@ -65,14 +65,38 @@ document.addEventListener('DOMContentLoaded', () => {
         form.name.value = editDogName
         form.breed.value = editDogBreed
         form.sex.value  = editDogSex
-
-        
-        
-
       }
     })
   }
 
+  const submitHandler = () => {
+    document.addEventListener('submit', e => {
+      e.preventDefault()
+      const form = e.target
+
+      const name = form.name.value
+      const breed = form.breed.value
+      const sex = form.sex.value
+
+      
+      const options = {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        },
+        body: JSON.stringify({name: name, breed: breed, sex: sex})
+      }
+
+      fetch(baseUrl, options)
+      .then(response => response.json())
+      .then 
+    })
+  }
+
+
+
+  submitHandler()
   clickhandler()
   getDogs()
 })
