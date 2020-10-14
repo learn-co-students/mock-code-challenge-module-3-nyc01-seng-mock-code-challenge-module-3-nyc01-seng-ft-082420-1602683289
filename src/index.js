@@ -22,8 +22,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const baseUrl = "http://localhost:3000/dogs"
-  
+  const baseUrl = "http://localhost:3000/dogs/"
+  const tableBod = document.getElementById('table-body')
+
+
   const getDogs = () => {
     fetch(baseUrl)
     .then(response => response.json())
@@ -33,22 +35,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const renderDogs = dogs => {
-
+    tableBod.innerHTML = ""
     for (const dog of dogs) {
       renderDog(dog)
       
     }
   }
 
-  const table = document.querySelector('table')
   
   const renderDog = dog => {
-    const tableBod = document.getElementById('table-body')
-
+    
     const tableRow = document.createElement('tr')
     tableRow.classList.add('dog-info')
     tableRow.innerHTML = `
-    <td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-id="${dog.id}">Edit</button></td>`
+    <td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-dog-id="${dog.id}">Edit</button></td>`
 
     tableBod.append(tableRow)
   }
@@ -65,31 +65,39 @@ document.addEventListener('DOMContentLoaded', () => {
         form.name.value = editDogName
         form.breed.value = editDogBreed
         form.sex.value  = editDogSex
+        form.dataset.dogId = editButton.dataset.dogId
+        
       }
     })
   }
 
   const submitHandler = () => {
-    document.addEventListener('submit', e => {
+    const form = document.getElementById('dog-form')
+    form.addEventListener('submit', e => {
       e.preventDefault()
-      const form = e.target
-      const name = form.name.value
-      const breed = form.breed.value
-      const sex = form.sex.value
-
-
+      const dogForm = e.target
+      const dogId = dogForm.dataset.dogId
+      const name = dogForm.name.value
+      const breed = dogForm.breed.value
+      const sex = dogForm.sex.value
+      
+      const updatedDog = {name: name, breed: breed, sex: sex}
+      
       const options = {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
           "accept": "application/json"
         },
-        body: JSON.stringify({name: name, breed: breed, sex: sex})
+        body: JSON.stringify(updatedDog)
       }
 
-      // fetch(baseUrl, options)
-      // .then(response => response.json())
-      // .then 
+      fetch(baseUrl + dogId, options)
+      .then(response => response.json())
+      .then(dog => {
+
+        getDogs()
+      }) 
     })
   }
 
@@ -99,3 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
   clickhandler()
   getDogs()
 })
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
