@@ -28,21 +28,35 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(renderDogs)
   }
 
-  // const editDog =(dog)=>{
-  //   document.addEventListener('submit', e=>{
-  //     e.preventDefault()
-  //     const form  = e.target
-  //     console.log(form)
-  //   })
-  //
-  // }
+  const editDog =(dog)=>{
+    const form = document.querySelector('#dog-form')
+    form.setAttribute('data-id',`${dog.id}`)
+    form.name.value = `${dog.name}`
+    form.breed.value = `${dog.breed}`
+    form.sex.value = `${dog.sex}`
+  }
 
 
   const submitHandler = () =>{
     document.addEventListener('submit', e=>{
       e.preventDefault()
-      const form = e.target
-      console.log(form)
+      const form = document.querySelector('#dog-form')
+      const dogId = form.dataset.id
+      const name = form.name.value
+      const breed = form.breed.value
+      const sex = form.sex.value
+      const newDogInfo = { name: name, breed: breed, sex: sex}
+
+
+      const options = {
+        method: "PATCH"
+      }
+
+      fetch(url +dogId, options)
+      .then(resp => resp.json())
+      .then(dog=>{
+        renderDog(dog)
+      })
     })
   }
 
@@ -51,17 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', e=>{
       const button = e.target
       const dogId = button.dataset.dogId
-      // const options = {
-      //   method: "POST",
-      //   headers: {
-      //     "content-type": "application/json",
-      //     "accept":  "application/json"
-      //   },
-      //   body: JSON.stringify()
-      // }
-      fetch(url + dogId)
-      .then(resp => resp.json())
-      .then(editDog)
+      if (dogId){
+        fetch(url + dogId)
+        .then(resp => resp.json())
+        .then(editDog)
+      }
     })
   }
 
@@ -70,4 +78,5 @@ document.addEventListener('DOMContentLoaded', () => {
   /*--------------*/
   renderData()
   clickHandler()
+  submitHandler()
 })
