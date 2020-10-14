@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const dogUrl = 'http://localhost:3000/dogs/'
-
   const fetchDogs = () => {
     fetch(dogUrl)
     .then(resp => resp.json())
@@ -32,10 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const breed = form.querySelector(`[name='breed']`)
     const sex = form.querySelector(`[name='sex']`)
     const id = document.querySelector(`[name='id']`)
+
     name.value = trChildren[0].innerHTML
     breed.value = trChildren[1].innerHTML
     sex.value = trChildren[2].innerHTML
     id.value = tr.dataset.id
+
   }
 
   const updateDog = (form) => {
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sex = form.children[2].value
     const id = form.children[3].value
     const object = {name: name, breed: breed, sex: sex}
+    console.log()
     const options = {
       method: 'PATCH',
       headers:{
