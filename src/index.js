@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const getDogs = () => {
     const tableBody = document.getElementById('table-body')
+    tableBody.innerHTML = ""
     fetch(dogUrl)
     .then(response => response.json())
     .then(dogData => {
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
           inputs[0].value = dogData.name
           inputs[1].value = dogData.breed
           inputs[2].value = dogData.sex
-          inputs[3].id = dogData.id
+          inputs[3].id = dogData.id  //stored the dog's id on the submit button for some reason ¯\_(ツ)_/¯
         })
       }
     })
@@ -59,9 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch(dogUrl+dogId, options)
         .then(response => response.json())
-        .then(newDog => {
-          console.log(newDog)
-        })
+        .then(newDog => getDogs())
       }
     })
   }

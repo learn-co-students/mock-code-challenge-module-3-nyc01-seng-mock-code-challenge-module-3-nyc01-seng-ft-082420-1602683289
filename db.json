@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Daddy",
       "breed": "Scottish Deerhound",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 2,
@@ -38,7 +38,7 @@
     },
     {
       "id": 7,
-      "name": "Diamond",
+      "name": "Diamonds are Foreva",
       "breed": "Labrador",
       "sex": "female"
     },
@@ -98,7 +98,7 @@
     },
     {
       "id": 17,
-      "name": "Chance",
+      "name": "Chance the Rapper",
       "breed": "Flatcoated Retriever",
       "sex": "female"
     },
