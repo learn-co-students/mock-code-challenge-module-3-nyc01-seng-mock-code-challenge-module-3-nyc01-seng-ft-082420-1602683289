@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const submitHandler = () =>{
     document.addEventListener('submit', e=>{
-      e.preventDefault()
       const form = document.querySelector('#dog-form')
       const dogId = form.dataset.id
       const name = form.name.value
@@ -47,12 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const sex = form.sex.value
       const newDogInfo = { name: name, breed: breed, sex: sex}
 
-
       const options = {
-        method: "PATCH"
+        method: "PATCH",
+        headers:{
+          "content-type": "application/json",
+          "accept": "application/json"
+        },
+        body: JSON.stringify(newDogInfo)
       }
 
-      fetch(url +dogId, options)
+      fetch(url + dogId, options)
       .then(resp => resp.json())
       .then(dog=>{
         renderDog(dog)
