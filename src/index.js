@@ -77,7 +77,6 @@ const showDogs = () => {
         showOneDog(dog)
         }
     })
-    
 }
 showDogs()
 })

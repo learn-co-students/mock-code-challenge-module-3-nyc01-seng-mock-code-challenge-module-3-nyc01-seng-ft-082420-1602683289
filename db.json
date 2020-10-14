@@ -8,15 +8,15 @@
     },
     {
       "id": 2,
-      "name": "Gunnar",
+      "name": "Oreo",
       "breed": "Golden Retriever",
       "sex": "male"
     },
     {
       "id": 3,
-      "name": "Snickers",
+      "name": "Twix",
       "breed": "Dachshund",
-      "sex": "female"
+      "sex": "male"
     },
     {
       "id": 4,
