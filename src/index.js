@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(editDog)
             }
         
-            fetch(baseUrl + dogId, options)
+            fetch(baseUrl + id, options)
                 .then(response => response.json())
                 .then(_dog => {
                 getDogs()
