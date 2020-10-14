@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     baseUrl = "http://localhost:3000/dogs/"
 
-    // create row for each dog (<tr> with <th>)
-    // add HTML to the row
-    // append the row the table
+    // create row for each dog (<tr>)
+    // add inner HTML to the row (<td>)
+    // append the row the table's body
     const renderDog = (dog, dogTableBody) => {
         const dogRow = document.createElement("tr")
         dogRow.innerHTML = `
@@ -32,8 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
  
-
-
     getDogs()
 
 });
