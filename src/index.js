@@ -30,13 +30,27 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
     
-    // Edit dog - clickHandler to edit (populate form with current info)
+    // Edit dog w/ clickHandler & PATCH request
     const clickHandler = () => {
         document.addEventListener("click", e => {
             if(e.target.matches(`[data-purpose="edit"]`)){
                 const button = e.target
                 const dogId = button.dataset.dogId
-                console.log(dogId)
+                
+                // options = {
+                //     method: "PATCH"
+                //     headers: {
+                //         "content-type": "application/json"
+                //         "accept": "application/json"
+                //     },
+                //     body: JSON.stringify({//WHAT ARE WE STRINGIFYING HERE})
+                // }
+
+                // fetch(baseUrl + dogId, options)
+                // .then(response => response.json())
+                // .then(dog => {
+                //     const button = document.querySelector(`data-dog-id="${dog.id}"`)
+                // })
             }
         })
     }
