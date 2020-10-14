@@ -28,27 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(renderDogs)
   }
 
-  const editDog =(dog)=>{
+  const editDog = (dog) => {
     const form = document.querySelector('#dog-form')
-    form.setAttribute('data-id',`${dog.id}`)
+    form.setAttribute('data-id', `${dog.id}`)
     form.name.value = `${dog.name}`
     form.breed.value = `${dog.breed}`
     form.sex.value = `${dog.sex}`
   }
 
-
-  const submitHandler = () =>{
-    document.addEventListener('submit', e=>{
+  const submitHandler = () => {
+    document.addEventListener('submit', e => {
       const form = document.querySelector('#dog-form')
       const dogId = form.dataset.id
       const name = form.name.value
       const breed = form.breed.value
       const sex = form.sex.value
-      const newDogInfo = { name: name, breed: breed, sex: sex}
+      const newDogInfo = {
+        name: name,
+        breed: breed,
+        sex: sex
+      }
 
       const options = {
         method: "PATCH",
-        headers:{
+        headers: {
           "content-type": "application/json",
           "accept": "application/json"
         },
@@ -56,29 +59,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       fetch(url + dogId, options)
-      .then(resp => resp.json())
-      .then(dog=>{
-        renderDog(dog)
-      })
+        .then(resp => resp.json())
+        .then(dog => {
+          renderDog(dog)
+        })
     })
   }
 
-
-  const clickHandler = () =>{
-    document.addEventListener('click', e=>{
+  const clickHandler = () => {
+    document.addEventListener('click', e => {
       const button = e.target
       const dogId = button.dataset.dogId
-      if (dogId){
+      if (dogId) {
         fetch(url + dogId)
-        .then(resp => resp.json())
-        .then(editDog)
+          .then(resp => resp.json())
+          .then(editDog)
       }
     })
   }
 
+  /*------rendering functions--------*/
 
-
-  /*--------------*/
   renderData()
   clickHandler()
   submitHandler()

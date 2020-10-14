@@ -2,13 +2,13 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Baby111",
-      "breed": "Scottish Deerhound",
-      "sex": "male"
+      "name": "Baby hey",
+      "breed": "Scottish Deerhou",
+      "sex": "female"
     },
     {
       "id": 2,
-      "name": "Teddy2",
+      "name": "Teddy",
       "breed": "Rhodesian Ridgeback",
       "sex": "female"
     },
@@ -104,7 +104,7 @@
     },
     {
       "id": 18,
-      "name": "Chance",
+      "name": "Chance2",
       "breed": "Toy Terrier",
       "sex": "male"
     },
@@ -116,7 +116,7 @@
     },
     {
       "id": 20,
-      "name": "Coco",
+      "name": "CocoMilkTea",
       "breed": "Affenpinscher",
       "sex": "female"
     }
