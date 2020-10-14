@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderDogs = (dogs) => {
         for (const dog of dogs) {
             renderDog(dog)
-            eventHandler(dog)
         }
     }
 
@@ -29,27 +28,69 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${dog.name}</td>
         <td>${dog.breed}</td> 
         <td>${dog.sex}</td> 
-        <td><button class='${dog.id}'>Edit</button></td>
+        <td><button>Edit</button></td>
         `
-
+        tableRow.dataset.id = dog.id
         tableBody.appendChild(tableRow)
     }
 
 
-    const eventHandler = (dog) => {
-
-        const dogId = `${dog.id}`
+    const clickHandler = () => {
 
         document.addEventListener('click' , function(e) {
-            console.log(e.target.textContent === 'Edit')
-            // if(e.target.class.matches(dogId)){
-            //     console.log('SUCCESS')
-            // }
+           if(e.target.textContent === 'Edit') {
+
+               const row = e.target.closest('tr')
+               const cell = row.children
+               
+                const name  = cell[0].textContent
+                const breed = cell[1].textContent
+                const sex =   cell[2].textContent
+
+                const form = document.querySelector('#dog-form')
+
+                form.name.value = name
+                form.breed.value = breed
+                form.sex.value = sex
+
+                form.dataset.id = row.dataset.id
+
+                console.log('SUCCESS')
+
+            }
         })
     }
 
 
+    const submitHandler = () => {
+        document.addEventListener('submit', function (e){
+            e.preventDefault()
 
-   
+            const form = e.target
+
+            const name = form.name.value
+            const breed = form.breed.value
+            const sex = form.sex.value
+
+            const id = form.dataset.id
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ name: name, breed: breed, sex: sex})
+            }
+
+            fetch(baseURL + id, options)
+            .then(response => response.json())
+            .then(dog => {getDogs()})
+        })
+    }    
+
+
+    submitHandler()
+    clickHandler()
     getDogs()
 })
