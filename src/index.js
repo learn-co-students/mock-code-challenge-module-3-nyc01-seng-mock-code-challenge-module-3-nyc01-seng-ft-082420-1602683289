@@ -44,11 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const renderDog = dog => {
     const tableBod = document.getElementById('table-body')
-    
-    tableBod.innerHTML = `
-    <tr><td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-id="${dog.id}">Edit</button></td></tr>
-    `
-    table.append(tableBod)
+
+    const tableRow = document.createElement('tr')
+    tableRow.innerHTML = `
+    <td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-id="${dog.id}">Edit</button></td>`
+
+    tableBod.append(tableRow)
   }
 
   getDogs()
