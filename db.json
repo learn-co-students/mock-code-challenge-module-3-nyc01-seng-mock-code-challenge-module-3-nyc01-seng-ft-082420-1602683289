@@ -2,15 +2,15 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Baby",
+      "name": "Babee",
       "breed": "Scottish Deerhound",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 2,
       "name": "Teddy",
       "breed": "Rhodesian Ridgeback",
-      "sex": "female"
+      "sex": "male"
     },
     {
       "id": 3,
@@ -32,9 +32,9 @@
     },
     {
       "id": 6,
-      "name": "Oreo",
+      "name": "Oreoreo",
       "breed": "English Springer",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 7,

@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     renderDogs = (dogs) => {
-        
+
         const table = document.querySelector("#table-body")
-        
+        table.innerHTML = ''
         for (const dog of dogs) {
             const newDogEl = document.createElement("tr")
             newDogEl.innerHTML = `<td class = "name">${dog.name}</td> <td class = "breed">${dog.breed}</td> <td class = "sex">${dog.sex}</td> <td><button class="edit">Edit</button></td>
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     form.addEventListener('submit', function (e) {
-        
+
         e.preventDefault()
         newDog = {
             name: `${form.name.value}`,
@@ -50,10 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(res => res.json())
             .then(dogs => {
                 console.log(dogs)
+                getDogs()
             })
-            getDogs()
-            e.target.reset()
-            
+
+        e.target.reset()
+
     })
 
 
