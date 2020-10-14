@@ -38,20 +38,28 @@ document.addEventListener('DOMContentLoaded', () => {
         <td><button>Edit</button></td>
         </tr>
         `
-        // remember to append to tableBody
         tableBody.append(dogRow)
     }
 
     // Clicking on the edit button next to a dog should populate the top form with that dog's current information.
     const clickHandler = () => {
         document.addEventListener("click", (e) => {
-
+            if (e.target.matches("button")){
+                // select the edit form element
+                // const dogEditForm = document.querySelector("#dog-form")
+                // the text of the input form should be the dog's name, breed, and sex
+                const dogNameForm = document.querySelector("name")
+                // let dogNameForm = dogEditForm.firstElementChild
+                console.log(dogNameForm)
+                let dogBreedForm = dogNameForm.nextElementSibling
+                console.log(dogBreedForm)
+                // dogNameForm.value = 
+            }
         })
     }
 
 
 
-
-
     getDogs();
+    clickHandler();
 })
