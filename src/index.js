@@ -45,18 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = form.children[3].value
     const object = {name: name, breed: breed, sex: sex}
     const options = {
-      method: 'patch',
+      method: 'PATCH',
       headers:{
         'content-type' : 'application/json',
         'accepts' : 'application/json'
       },
       body: JSON.stringify(object)
     }
-    console.log(dogUrl + id)
-
-    fetch(dogUrl + id, options, { mode: 'no-cors'})
+    fetch(dogUrl + id, options)
     .then(resp => resp.json())
-    .then(console.log)
+    .then(data => fetchDogs())
   }
 
   const submitHandler = () => {
@@ -64,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const form = e.target
       if(form.matches('#dog-form')){
         updateDog(form)
-        e.preventDefault();
+        // e.preventDefault();
       }
     })
   }
