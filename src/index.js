@@ -18,25 +18,22 @@ const renderDogs = (dog) => {
         renderDog(dogObj)
     }
 }
-
+//This part messed me up because I'm very confused on how to create a table
 const renderDog = (dogObj) => {
-    const trTag1 = document.createElement("tr")
-    const trTag2 = document.createElement("tr")
-
-    trTag1.innerText = `${dogObj.name}`
-    trTag2.innerText = `${dogObj.breed}`
-    //  `
-    // <td>${dogObj.name}</td>
-    //  <td>*${dogObj.breed}</td> 
-    //  <td>${dogObj.sex}</td> 
-    //  <td><button>Edit</button></td>
-    // `
+    const tableBody = document.querySelector("tbody#table-body")
+    const trTag = document.createElement("tr")
+    const tdTag = document.createElement("td")
+trTag.append(tdTag)
+tableBody.append(trTag)
+// document.querySelector()
+//     tdTag.textContent= `
+//   <td>${dogObj.name}</td> <td>*${dogObj.breed}</td> <td>${dogObj.sex}</td> <td><button>Edit</button></td>
+//   `
    
-    tableBody.append(trTag1)
-    tableBody.append(trTag2)
-    // console.log(trTag1)
+    // console.log(trTag)
 }
 
+//I couldn't continue to this part because I wasn't able to create an edit button. For this part, I knew that I was supposed to create a submit listener and then create another fetch request, which in this case is a PATCH.
 const submitHandler = () => {
     document.addEventListener('submit', (e) => {
         e.preventDefault()
