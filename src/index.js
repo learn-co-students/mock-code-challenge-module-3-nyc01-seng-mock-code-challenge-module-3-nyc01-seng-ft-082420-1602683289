@@ -25,12 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
         dogTr.classList.add("dog")
         dogTr.dataset.dogId = dogObj.dogId
 
-        dogTr.innerHTML = `<tr><td>Dog *Name*</td> 
-        <td>*Dog Breed*</td> 
-        <td>*Dog Sex*</td> 
-        <
+        dogTr.innerHTML = `
+        <tr><td> ${dogObj.name}</td> 
+        <td>${dogObj.breed}</td> 
+        <td>${dogObj.sex}</td> 
+        `
+
+        const dogList = document.querySelector('.table-body')
         
-        
+        dogList.append(dogTr)
         
         
         
