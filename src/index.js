@@ -73,12 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('submit', e => {
       e.preventDefault()
       const form = e.target
-
       const name = form.name.value
       const breed = form.breed.value
       const sex = form.sex.value
 
-      
+
       const options = {
         method: "PATCH",
         headers: {
@@ -88,9 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({name: name, breed: breed, sex: sex})
       }
 
-      fetch(baseUrl, options)
-      .then(response => response.json())
-      .then 
+      // fetch(baseUrl, options)
+      // .then(response => response.json())
+      // .then 
     })
   }
 
