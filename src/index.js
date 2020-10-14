@@ -19,7 +19,7 @@ const showOneDog = (dog) => {
     displaySex.innerHTML = dog.sex
 
     // getting info from inspect and using the HTML provided to create Element
-    // refer to readMe to get td and tr
+    // referred to ReadMe to get td and tr
 
     const displayButton = document.createElement('td')
     displayButton.innerHTML = `
@@ -36,7 +36,6 @@ const showOneDog = (dog) => {
     // displayRow.append(displaySex)
     // displayRow.append(displayButton)
 
-    // once we display all these above we need to append below 
     oneDog.append(displayRow)
 }
 // need to append to actually display all this info 
