@@ -4,10 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     //get existing dogs on show page 
     const getDogs = () => {
-        return fetch(BASE_URL)
+        fetch(BASE_URL)
         .then(resp => resp.json())
         .then(renderDogs)
+
+        
     }
+    getDogs()
 
     const renderDogs = dogs => {
         dogs.forEach(dogObj => {
@@ -17,7 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const renderDog = (dogObj) => {
+        const dogInfo = document.createElement("div")
         
+
+
+        //`<tr><td>Dog *Name*</td> <td>*Dog Breed*</td> <td>*Dog Sex*</td> <td><button>Edit</button></td></tr>`
+
     }
 
 
