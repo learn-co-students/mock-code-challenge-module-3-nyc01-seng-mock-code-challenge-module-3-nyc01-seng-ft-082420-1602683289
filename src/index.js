@@ -19,21 +19,20 @@ for(const dog of dogs){
 
 const addDogToDom = (dog) => {
     const tableBody = document.getElementById('table-body')
-    const dogDiv = document.createElement('div')
+//    const dogDiv = document.createElement('div')
+    const dogTR = document.createElement('tr')
 //    console.log(dogDiv)
-    let dogTR = document.querySelector('.dogTR')
-    dogDiv.dataset.id = dog.id
-    dogDiv.innerHTML = `
-    <tr class="dogTR">
+//    let dogTbl = document.querySelector('.dogTR')
+    dogTR.dataset.id = dog.id
+    dogTR.innerHTML = `
+    
         <td>${dog.name}</td>
         <td>${dog.breed}</td>
         <td>${dog.sex}</td>
         <td><button>Edit</button></td>
-    </tr>
-
+   
     `
-
-    tableBody.appendChild(dogDiv)
+    tableBody.appendChild(dogTR)
 }
 
 
