@@ -65,7 +65,6 @@ function updateDog(id, name, breed, sex) {
     .then(response => response.json())
     .then(dog => {
         const dogElement = document.querySelector(`[data-id="${dog.id}"]`)
-        console.log(dogElement.children[0].innerText)
         dogElement.children[0].innerText = dog.name
         dogElement.children[1].innerText = dog.breed
         dogElement.children[2].innerText = dog.sex
