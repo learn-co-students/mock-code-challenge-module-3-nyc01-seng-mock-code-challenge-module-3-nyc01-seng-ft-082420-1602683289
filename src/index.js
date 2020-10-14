@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clickHandler()
     submitHandler()
 })
+
 DOGS_URL = "http://localhost:3000/dogs/"
 
 function fetchDogs() {
@@ -45,10 +46,10 @@ function submitHandler() {
         const form = document.querySelector("#dog-form")
         let dogName = form.name.value
         let dogId = form.name.id
-        // let dogElement = document.querySelector(`#${dogId}`)
         let dogBreed = form.breed.value
         let dogSex = form.sex.value
         updateDog(dogId, dogName, dogBreed, dogSex)
+        form.reset()
     })
 }
 
@@ -64,6 +65,9 @@ function updateDog(id, name, breed, sex) {
     .then(response => response.json())
     .then(dog => {
         const dogElement = document.querySelector(`[data-id="${dog.id}"]`)
-        console.dir(dogElement)
+        console.log(dogElement.children[0].innerText)
+        dogElement.children[0].innerText = dog.name
+        dogElement.children[1].innerText = dog.breed
+        dogElement.children[2].innerText = dog.sex
     })
 }
