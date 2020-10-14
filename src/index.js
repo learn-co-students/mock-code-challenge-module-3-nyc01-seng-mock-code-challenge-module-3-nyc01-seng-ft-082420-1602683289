@@ -58,13 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target.matches('button')) {
         const editButton = e.target
         const form = document.getElementById('dog-form')
-        let editDogName = form.name.value
-        let editDogBreed = form.breed.value
-        let editDogSex = form.sex.value
-        const dogInfo = document.getElementsByClassName('dog-info')
-        const dogInfoName = dogInfo[0].children[0].textContent
-        editDogName = dogInfoName
-        console.log(editDogName)
+        let editDogName = editButton.parentElement.parentElement.children[0].textContent
+        let editDogBreed = editButton.parentElement.parentElement.children[1].textContent
+        let editDogSex = editButton.parentElement.parentElement.children[2].textContent
+
+        form.name.value = editDogName
+        form.breed.value = editDogBreed
+        form.sex.value  = editDogSex
+
         
         
 
