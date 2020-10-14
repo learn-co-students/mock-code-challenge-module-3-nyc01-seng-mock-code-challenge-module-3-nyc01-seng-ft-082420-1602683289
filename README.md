@@ -19,10 +19,27 @@ This will serve your code on http://localhost:3000.
 ### Deliverables
 
 - On page load, render a list of already registered dogs in the table. You can fetch these dogs from http://localhost:3000/dogs.
+
+// 1. Const getDogs —> get data from the server via GET request to /dogs to get all the dogs from server
+// 2. renderDogs to iterate through each dog and render each dog to the DOM
+
 - The dog should be put on the table as a table row. The HTML might look something like this `<tr><td>Dog *Name*</td> <td>*Dog Breed*</td> <td>*Dog Sex*</td> <td><button>Edit</button></td></tr>`
+
+// 3. renderDog to add response data into the HTML
+
 - Make a dog editable. Clicking on the edit button next to a dog should populate the top form with that dog's current information.
+
+// 4. clickHandler to edit (populate form with current info)
+
 - On submit of the form, a PATCH request should be made to http://localhost:3000/dogs/:id to update the dog information (including name, breed and sex attributes).
+
+// 6. SubmitHandler 
+// 7. PATCH request to /dogs/:id
+
 - Once the form is submitted, the table should reflect the updated dog information. There are many ways to do this. You could search for the table fields you need to edit and update each of them in turn, but we suggest making a new get request for all dogs and rerendering all of them in the table. Make sure this GET happens after the PATCH so you can get the most up-to-date dog information.
+
+// 8. Update should persist - make new GET request for all dogs and re-render all of them in the table. Make sure this GET happens after the PATCH so you can get the most up-to-date dog information.
+
 
 ### Example
 The below gif demonstrates the working functionality of the app.
