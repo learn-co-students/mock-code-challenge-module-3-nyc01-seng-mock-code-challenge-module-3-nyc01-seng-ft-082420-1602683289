@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function fetchDogs() {
     fetch('http://localhost:3000/dogs')
     .then(res => res.json())
-    .then(dogs => renderDogs(dogs))
+    .then(dogs => {
+        console.log(document.querySelector('input[type="submit"]'))
+        document.querySelector('input[type="submit"]').disabled = true
+        renderDogs(dogs)
+    })
 }
 
 function renderDogs(dogs) {
@@ -33,6 +37,10 @@ function editDog() {
     const form = document.querySelector("#dog-form")
     document.addEventListener("click", e=> {
         if (e.target.matches(".edit")) {
+            if (form.querySelector("#id-field")) {
+                form.querySelector("#id-field").remove()
+            }
+            form.querySelector('input[type="submit"]').disabled = false
             console.dir(e.target.parentElement.parentElement)
             form.name.value = e.target.parentElement.parentElement.children[0].textContent
             form.breed.value = e.target.parentElement.parentElement.children[1].textContent
@@ -82,8 +90,7 @@ function submitHander() {
                 }
             }
         })
-        form.reset()    
-        form.querySelector("#id-field").remove()
-
+        form.reset()   
+        document.querySelector('input[type="submit"]').disabled = true
     })
 }

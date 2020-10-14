@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "hi",
-      "breed": "hi",
+      "breed": "howdy",
       "sex": "hi"
     },
     {
@@ -16,7 +16,7 @@
       "id": 3,
       "name": "Snickers",
       "breed": "Dachshund",
-      "sex": "female"
+      "sex": "MALE"
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "id": 6,
       "name": "Oreo",
       "breed": "English Springer",
-      "sex": "male"
+      "sex": "female"
     },
     {
       "id": 7,
