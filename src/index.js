@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const URL = 'http://localhost:3000/dogs'
-
+    const form = document.querySelector("#dog-form")
 
 
     renderDogs = (dogs) => {
@@ -8,30 +8,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (const dog of dogs) {
             const newDogEl = document.createElement("tr")
-            newDogEl.innerHTML = `<td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button class="edit">Edit</button></td>
+            newDogEl.innerHTML = `<td class = "name">${dog.name}</td> <td class = "breed">${dog.breed}</td> <td class = "sex">${dog.sex}</td> <td><button class="edit">Edit</button></td>
             `
+            newDogEl.dataset.dogId = dog.id
             table.append(newDogEl)
         }
     }
-    
-    document.addEventListener('click', function(e){
+
+    document.addEventListener('click', function (e) {
         const target = e.target
-        const dog = target.parentElement
-        const form = document.querySelector("#dog-form")
-        if (target.matches(".edit")){
-            
-            console.log(dog)
+        const dog = target.parentElement.parentElement
+        if (target.matches(".edit")) {
+            form.dataset.dogId = dog.dataset.dogId
+            form.name.value = dog.querySelector(".name").innerText
+            form.breed.value = dog.querySelector(".breed").innerText
+            form.sex.value = dog.querySelector(".sex").innerText
 
         }
-        
 
+
+    })
+
+    form.addEventListener('submit', function (e) {
+        console.log(e.target)
+        newDog ={}
+        options = {method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body:JSON.stringify()
+        }
+        // fetch(URL + , options)
     })
 
 
 
+
     fetch(URL)
-    .then(res =>res.json())
-    .then(dogs => {renderDogs(dogs)})
+        .then(res => res.json())
+        .then(dogs => {
+            renderDogs(dogs)
+        })
 
 
 })
