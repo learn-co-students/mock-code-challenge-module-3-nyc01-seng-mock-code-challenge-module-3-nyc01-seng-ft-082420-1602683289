@@ -69,4 +69,7 @@ function updateDog(id, name, breed, sex) {
         dogElement.children[1].innerText = dog.breed
         dogElement.children[2].innerText = dog.sex
     })
+    .catch(error => {
+        alert("Sorry, it seems your dog did not qualify. Better luck next year!")
+    })
 }
