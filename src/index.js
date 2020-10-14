@@ -5,14 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderDogList = (dogs) => {
         for (const dog of dogs) {
             renderDogRow(dog)
-
-
         }
-
     }
 
     const renderDogRow = (dog) => {
         let newDogRow = dogListBody.insertRow(-1)
+        newDogRow.setAttribute("id", `row-${dog.id}`)
         newDogRow.innerHTML = `<tr><td>${dog.name}</td> 
         <td>${dog.breed}</td> 
         <td>${dog.sex}</td> 
@@ -26,7 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
         .then (dogs => renderDogList(dogs))
     }
 
+    const clickHandler = () => {
+        document.addEventListener('click', e => {
+            if (e.target.matches('.edit-button')) {
+                let dogId = e.target.dataset.id
+                //console.log(dogId)
+                console.log(e.target.parentElement.parentElement)
+            }
+        })
+    }
+
     getDogs()
+    clickHandler()
 })
 
 
