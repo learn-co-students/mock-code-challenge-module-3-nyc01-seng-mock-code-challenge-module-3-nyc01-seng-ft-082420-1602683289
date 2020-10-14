@@ -8,7 +8,27 @@ const renderDogs = (dogs) =>{
     }
 }
 
+function clickHandler(){
+    document.addEventListener('click', e =>{
+        if(e.target.innerHTML == 'Edit'){
+            const button = e.target
+            const parentli = button.parentElement
+            const grandPopsLI = parentli.parentElement
+            const dogId = grandPopsLI.dataset.id
 
+            const options = {
+                method: "PATCH",
+                headers: {
+                  "content-type": "application/json",
+                  "accept": "application/json"
+                },
+                body: JSON.stringify({  })
+              }
+
+        }
+    })
+}
+clickHandler()
 const submitHandler =() =>{
     document.addEventListener("submit", e =>{
         e.preventDefault()
@@ -39,7 +59,7 @@ const submitHandler =() =>{
 const renderDog = (dog) =>{
     const thread = document.getElementById("table-body")
     
-    const table = `<tr><td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button>Edit</button></td></tr>`
+    const table = `<tr data-id = ${dog.id} ><td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button>Edit</button></td></tr>`
     thread.insertAdjacentHTML('beforeend', table)
 }
 
