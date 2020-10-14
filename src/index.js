@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+
     document.addEventListener('click', function (e) {
         const target = e.target
         const dog = target.parentElement.parentElement
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     form.addEventListener('submit', function (e) {
-
+        
         e.preventDefault()
         newDog = {
             name: `${form.name.value}`,
