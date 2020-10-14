@@ -19,6 +19,7 @@ function renderDogs(dogs) {
 function renderDog(dog, tableBody) {
     let tableRow = document.createElement("tr")
     tableRow.id = dog.name
+    tableRow.dataset.id = dog.id
     tableRow.innerHTML = `
     <td>${dog.name}</td><td>${dog.breed}</td><td>${dog.sex}</td><td><button id="${dog.id}">Edit Dog</button></td>
     `
@@ -29,11 +30,11 @@ function clickHandler() {
     document.addEventListener("click", e => {
         if(e.target.matches("button")) {
         const form = document.querySelector("#dog-form")
-        let dogId = e.target.id
         let dogData = e.target.parentElement.parentElement
         form.name.value = dogData.children[0].innerText
         form.breed.value = dogData.children[1].innerText
         form.sex.value = dogData.children[2].innerText
+        form.name.id = e.target.id
         }
     })
 }
@@ -43,12 +44,11 @@ function submitHandler() {
         e.preventDefault()
         const form = document.querySelector("#dog-form")
         let dogName = form.name.value
-        let dogElement = document.querySelector(`#${dogName}`)
-        let dogId = dogElement.children[3].firstChild.id
+        let dogId = form.name.id
+        // let dogElement = document.querySelector(`#${dogId}`)
         let dogBreed = form.breed.value
         let dogSex = form.sex.value
-        // updateDog()
-        console.log(dogId)
+        updateDog(dogId, dogName, dogBreed, dogSex)
     })
 }
 
@@ -63,6 +63,7 @@ function updateDog(id, name, breed, sex) {
     fetch(DOGS_URL + id, options)
     .then(response => response.json())
     .then(dog => {
-        console.log(dog)
+        const dogElement = document.querySelector(`[data-id="${dog.id}"]`)
+        console.dir(dogElement)
     })
 }
