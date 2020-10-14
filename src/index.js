@@ -68,4 +68,42 @@ document.addEventListener('DOMContentLoaded', () => {
   getDogs()
   editDog()
   postDog()
+
+
+  // ----------------------- //
+  // Additional Functionality //
+
+  const renderForm = () => {
+    const form =document.createElement('form')
+    form.innerHTML = `
+    <form id="new-dog-form" class="padding margin border-round border-grey">
+        <input type="text" name="name" placeholder="dog's name" value="">
+        <input type="text" name="breed" placeholder="dog's breed" value="">
+        <input type="text" name="sex" placeholder="dog's sex" value="">
+        <input type="submit" value="Submit">
+      </form>
+    `
+    return form
+  }
+
+  const registerNewDogs = () => {
+    newDogBtn = document.createElement('Button')
+    newDogBtn.textContent = "Register Dog"
+    newDogBtn.id = "register"
+    form = document.getElementById('dog-form')
+    form.insertAdjacentElement('afterend', newDogBtn)
+
+    newDogBtn.addEventListener('click', e => {
+      const newForm = renderForm()
+      newDogBtn.insertAdjacentElement('afterend', newForm)
+
+      //  1) grab values from form
+      //  2) fetch POST to localhost3000/dogs
+      //  3) assign values from Step 1 to Body of POST
+      //  4) Run getDogs to update the table
+    })
+  }
+
+registerNewDogs()
+
 })
