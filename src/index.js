@@ -1,30 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-
-
-//fetchDogs
+fetchDogs
 
 })
 
-//const fetchDogs = () => {
+const fetchDogs = () => {
 fetch('http://localhost:3000/dogs')
 .then(resp => resp.json())
 .then(dogs => renderDogs(dogs));
 
-//}
-
-const renderDogs = (dogs) => {
-for (const dog of dogs){
-    addDogToDom(dog)
 }
 
+const renderDogs = (dogs) => {
+for(const dog of dogs){
+    addDogToDom(dog)
+}
 }
 
 const addDogToDom = (dog) => {
-    let tableBody = document.getElementById('table-body')
+    const tableBody = document.getElementById('table-body')
+    const dogDiv = document.createElement('div')
+    dogDiv.dataset.id('dog.id')
 
 
+    tableBody.appendChild(dogDiv)
 
 }
 
