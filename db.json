@@ -2,7 +2,7 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Frank",
+      "name": "Adult",
       "breed": "Chihuahua",
       "sex": "Female"
     },

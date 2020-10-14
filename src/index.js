@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const clickHandler = () => {
-        document.addEventListener('click', e => {
+        dogListBody.addEventListener('click', e => {
             if (e.target.matches('.edit-button')) {
                 const editButton = e.target
                 let dogRow =  editButton.closest('tr') //e.target.parentElement.parentElement 
@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const submitHandler = () => {
-        document.addEventListener('submit', e => {
+        const form = document.querySelector('#dog-form')
+        form.addEventListener('submit', e => {
             e.preventDefault()
             const form = e.target
             const name = form.name.value
@@ -60,24 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const options = {
                 method: "PATCH",
                 headers: {
-                    "content-type": "appplication/json",
+                    "content-type": "application/json",
                     "accept": "application/json"
                 },
                 body: JSON.stringify(editDog)
             }
-
-            fetch(baseUrl + id, options)
-            .then (response => response.json())
-            .then(result => {
-                console.log('Success:', result);
+        
+            fetch(baseUrl + dogId, options)
+                .then(response => response.json())
+                .then(_dog => {
+                getDogs()
             })
-            .then (_dog => getDogs())
-            
-
-
-            
-            form.reset()
         })
+        
     }
 
     getDogs()
