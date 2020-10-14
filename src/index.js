@@ -26,18 +26,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const dogFormInsertData = (tr) => {
-    console.log(tr.childElements)
+    const trChildren = tr.children
+    const form = document.querySelector('#dog-form')
+    const name = form.querySelector(`[name='name']`)
+    const breed = form.querySelector(`[name='breed']`)
+    const sex = form.querySelector(`[name='sex']`)
+    const id = document.createElement('input')
+    id.setAttribute('type', 'hidden')
+    id.setAttribute('value', $tr.dataset.id)
+    name.value = trChildren[0].innerHTML
+    breed.value = trChildren[1].innerHTML
+    sex.value = trChildren[2].innerHTML
+  }
+
+  const updateDog = () => {
+
+  }
+
+  const submitHandler = () => {
+    document.addEventListener('submit', e => {
+      const form = e.target
+      if(form.matches('#dog-form')){
+
+        e.preventDefault();
+      }
+    })
   }
 
   const clickHandler = () => {
     document.addEventListener('click', e => {
       let button = e.target
       if(button.parentNode.parentNode.matches(`[data-id]`)){
-        dogFormInsertData()
+        dogFormInsertData(e.target.parentNode.parentNode)
       }
     })
   }
 
+  submitHandler();
   clickHandler();
   fetchDogs();
 })
