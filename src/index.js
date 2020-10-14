@@ -11,12 +11,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const baseUrl = "http://localhost:3000/dogs/"
 
-    // fetch dogs
     const getDogs = () => {
         fetch(baseUrl)
             .then(response => response.json())
             .then(dogs => renderDogs(dogs))
-            // console.log(dogs)
     }
     
     const renderDogs = dogs => {
@@ -24,9 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderDog(dog)
     }
 
-    // render individual dog where for each dog, the inner HTML should be a table arrangement
     const renderDog = dog => {
-        // select where the dogs should appear
         const tableBody = document.querySelector("#table-body")
         const dogRow = document.createElement("tr")
         dogRow.dataset.id = dog.id
@@ -45,19 +41,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const clickHandler = () => {
         document.addEventListener("click", (e) => {
             if (e.target.matches("button")){
+                // const editButton = document.querySelector("button")
+                // the edit button is a child element of the row, which contains the dataset-id
+                // maybe try and traverse up the DOM?
+
                 // select the edit form element
-                // const dogEditForm = document.querySelector("#dog-form")
+                const form = document.querySelector("#dog-form")
                 // the text of the input form should be the dog's name, breed, and sex
-                const dogNameForm = document.querySelector("name")
-                // let dogNameForm = dogEditForm.firstElementChild
-                console.log(dogNameForm)
-                let dogBreedForm = dogNameForm.nextElementSibling
-                console.log(dogBreedForm)
-                // dogNameForm.value = 
+                form.text.name = dog.name //dog is not defined
+                form.text.breed = dog.breed
+                form.text.sex = dog.sex
             }
         })
     }
 
+    // to update this upon submitting
+    // const submitHandler = () => {
+        // document.addEventListener("submit", (e) => {
+            // e.preventDefault();
+            // const options = {
+                //     method: "PATCH"
+                //     headers: {
+                //         "content-type": "application/json",
+                //         ""
+                //     }
+                //      body: JSON.stringify()
+                // }
+
+            // new get request by fetching after updating
+                // getDogs();
+        // })
+    // }
+            
 
 
     getDogs();
