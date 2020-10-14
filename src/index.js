@@ -34,11 +34,12 @@ function editDog() {
     document.addEventListener("click", e=> {
         if (e.target.matches(".edit")) {
             //form.name.value = e.target.nextSibling.textContent
-            console.log(e.target.dataset.id)
             const hiddenId = document.createElement("input")
-            hiddenId.setAttribute("type", "hidden");
             hiddenId.setAttribute("name", "id");
-            hiddenId..setAttribute("value", `${e.target.data.set.id}`);
+            hiddenId.setAttribute("value", `${e.target.dataset.id}`);
+            hiddenId.setAttribute("type", "hidden");
+            hiddenId.setAttribute("id", "id-field")
+            form.append(hiddenId)
         }
     })
 }
@@ -47,6 +48,7 @@ function submitHander() {
     const form = document.querySelector("#dog-form")
     form.addEventListener("submit", e => {
         e.preventDefault()
+        console.log(form.id.value)
         const body = {
             name: form.name.value,
             breed: form.breed.value,
@@ -60,6 +62,8 @@ function submitHander() {
             },
             body: JSON.stringify(body)
         }
-        fetch
+        //fetch(`http://localhost:3000/${form.id.value}`)
+        form.querySelector("#id-field").remove()
+
     })
 }
