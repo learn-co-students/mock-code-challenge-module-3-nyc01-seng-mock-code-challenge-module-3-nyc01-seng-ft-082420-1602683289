@@ -29,7 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.matches('.edit-button')) {
                 let dogId = e.target.dataset.id
                 //console.log(dogId)
-                console.log(e.target.parentElement.parentElement)
+                let dogRow = e.target.parentElement.parentElement
+                const dogForm = document.querySelector('#dog-form')
+                let dogName = dogRow.cells[0].innerHTML
+                console.log(dogName)
             }
         })
     }
