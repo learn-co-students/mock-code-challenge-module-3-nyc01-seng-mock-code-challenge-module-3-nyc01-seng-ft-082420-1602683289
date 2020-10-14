@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(baseUrl)
       .then(response => response.json())
       .then(dogs => {
-        console.log(dogs)
         for(const dog of dogs) {
           renderDog(dog)
         }
@@ -44,20 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const dogBreed = dogInfo[1].textContent
         const dogSex = dogInfo[2].textContent
 
+        editForm.dataset.dogId = dogId
         editForm.name.value = dogName
         editForm.breed.value = dogBreed
         editForm.sex.value = dogSex
-
-        submitHandler(dogId)
       } 
     })
   }
 
-  const submitHandler = dogId => {
+  const submitHandler = () => {
     document.addEventListener('submit', e => {
       e.preventDefault()
       const editForm = document.querySelector('#dog-form')
-      
+      const dogId = editForm.dataset.dogId
+
       const dogInfo = {
         name: editForm.name.value,
         breed: editForm.breed.value,
@@ -76,13 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch(baseUrl + dogId, options)
         .then(response => response.json())
         .then(dog => {
+          console.log(dog)
           editForm.reset()
           getDogs()
         })
       
     })
   }
-
+  
+  submitHandler()
   clickHandler()
   getDogs()
 })

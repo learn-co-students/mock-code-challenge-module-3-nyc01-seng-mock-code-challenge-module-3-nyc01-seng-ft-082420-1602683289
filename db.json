@@ -2,15 +2,15 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Baby",
-      "breed": "Scottish Deerhound",
-      "sex": "male"
+      "name": "Teddy Bear",
+      "breed": "Rhodesian Ridgeback",
+      "sex": "female"
     },
     {
       "id": 2,
       "name": "Teddy",
-      "breed": "Rhodesian Ridgeback",
-      "sex": "female"
+      "breed": "Mutt",
+      "sex": "male"
     },
     {
       "id": 3,
@@ -82,7 +82,7 @@
       "id": 14,
       "name": "Coco",
       "breed": "Maltese",
-      "sex": "female"
+      "sex": "male"
     },
     {
       "id": 15,
