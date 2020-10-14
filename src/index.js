@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const baseURL = 'http://localhost:3000/dogs/'
-    const dogName = document.getElementsByName('name').value
-    const dogBreed = document.getElementsByName('breed').value
-    const dogSex = document.getElementsByName('sex').value
 
 
 
@@ -16,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderDogs = (dogs) => {
         for (const dog of dogs) {
             renderDog(dog)
+            eventHandler(dog)
         }
     }
 
@@ -31,22 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${dog.name}</td>
         <td>${dog.breed}</td> 
         <td>${dog.sex}</td> 
-        <td><button dataset.id = '${dog.id}'>Edit</button></td>
+        <td><button class='${dog.id}'>Edit</button></td>
         `
 
         tableBody.appendChild(tableRow)
     }
 
 
-    const eventHandler = () => {
-        document.addEventListener('click' , function(e) {
+    const eventHandler = (dog) => {
 
+        const dogId = `${dog.id}`
+
+        document.addEventListener('click' , function(e) {
+            console.log(e.target.textContent === 'Edit')
+            // if(e.target.class.matches(dogId)){
+            //     console.log('SUCCESS')
+            // }
         })
     }
 
 
 
-
-    eventHandler()
+   
     getDogs()
 })
