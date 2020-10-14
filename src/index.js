@@ -14,24 +14,27 @@ const fetchDogs = () => {
 
 const addDogs = (dogs) => {
     for(const dog of dogs){
-        addDogToDom(dog)
+        let table = document.querySelector('#table-body')
+        let tr = document.createElement('tr')
+        tr.innerHTML=`
+        <td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button data-set-id="${dog.id}" class="edit">Edit</button></td>
+        `
+        table.appendChild(tr)
     }
 }
 
-const addDogToDom = (dog) => {
-    let table = document.querySelector('#table-body')
 
-
-    table.innerHTML= `
-    <tr><td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button class="edit">Edit</button></td></tr>
-    `
-}
 
 const clickHandler = () =>{
     document.addEventListener('click', e => {
         if(e.target.matches('.edit')){
-            let form = e.target
-            
+            let editButton = e.target
+            let dogId = editButton.dataId
+            let form = document.querySelector('.dog-form')
+            console.log(dogId)
+
+
+
 
         }
     })
