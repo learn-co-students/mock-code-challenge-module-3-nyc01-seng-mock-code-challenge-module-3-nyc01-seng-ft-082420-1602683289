@@ -35,40 +35,68 @@ document.addEventListener('DOMContentLoaded', () => {
             if(e.target.matches(".edit")) {
                 const button = e.target
                 const buttonId = button.dataset.dogId
-                const dogName = document.querySelector(".name")
-                console.log(dogName)
+                const dogRow = button.parentElement
+                const dogObj = dogRow.parentElement
+                const dogName = dogObj.querySelector(".name")
+                const dogBreed = dogObj.querySelector(".breed")
+                const dogSex = dogObj.querySelector(".sex")
+
+                let name = dogName.innerText
+                let breed = dogBreed.innerText
+                let sex = dogSex.innerText
+                const form = document.querySelector("#dog-form")
+                form.dataset.id = buttonId
                 
-
-        //         <form id='dog-form' class="padding margin border-round border-grey">
-        //   <input type="text" name="name" placeholder="dog's name" value="" />
-        //   <input type="text" name="breed" placeholder="dog's breed" value="" />
-        //   <input type="text" name="sex" placeholder="dog's sex" value="" />
-        //   <input type="submit" value="Submit" />
-        // </form>
-               
+                form.innerHTML = `
+                <input type="text" name="name" placeholder="dog's name" value= ${name} />
+                <input type="text" name="breed" placeholder="dog's breed" value= ${breed} />
+                <input type="text" name="sex" placeholder="dog's sex" value= ${sex} />
+                <input type="submit" value="Submit" />
+                `
             }
-
-
-
         })
     }
 
-    // const submitHandler = () => {
+    const submitHandler = () => {
+        document.addEventListener("submit", e => {
+            e.preventDefault()
+            const form = e.target
+
+            const name = form.name.value
+            const breed = form.breed.value
+            const sex = form.sex.value
+            const dogId = form.dataset.id
 
 
-    //     options = {
-    //         method: "PATCH",
-    //         headers: {
-    //             "content-type": "application/json",
-    //             "accept": "application/json"
-    //         },
-    //         body: JSON.stringify(editedDog)
-    //     }
-    // }
+            const editedDogObj = {
+                "id": dogId,
+                "name": name,
+                "breed": breed,
+                "sex": sex
+                }
+
+            options = {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify(editedDogObj)
+        }
+
+            fetch(BASEURL + dogId, options)
+            .then(response => response.json())
+            .then(data => renderDog(data))
+
+
+        })
+
+        
+    }
 
 
     getDogs();
     clickHandler();
-    // submitHandler();
+    submitHandler();
 
 })
