@@ -16,7 +16,7 @@
       "id": 3,
       "name": "Snickers",
       "breed": "Dachshund",
-      "sex": "MALE"
+      "sex": "male"
     },
     {
       "id": 4,
