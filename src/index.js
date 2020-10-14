@@ -33,7 +33,10 @@ function editDog() {
     const form = document.querySelector("#dog-form")
     document.addEventListener("click", e=> {
         if (e.target.matches(".edit")) {
-            //form.name.value = e.target.nextSibling.textContent
+            console.dir(e.target.parentElement.parentElement)
+            form.name.value = e.target.parentElement.parentElement.children[0].textContent
+            form.breed.value = e.target.parentElement.parentElement.children[1].textContent
+            form.sex.value = e.target.parentElement.parentElement.children[2].textContent
 
             //adding hidden 'id' attribute to form based on which edit button was pressed
             const hiddenId = document.createElement("input")
@@ -50,7 +53,6 @@ function submitHander() {
     const form = document.querySelector("#dog-form")
     form.addEventListener("submit", e => {
         e.preventDefault()
-        console.log(form.id.value)
         const body = {
             name: form.name.value,
             breed: form.breed.value,
@@ -67,10 +69,8 @@ function submitHander() {
         fetch(`http://localhost:3000/dogs/${form.id.value}`, options)
         .then(res => res.json())
         .then(dog => {
-            console.log(dog.name, dog.breed, dog.sex, dog.id)
             const allDogs = document.querySelectorAll(".edit")
             for (doge of allDogs) {
-                console.log(doge.dataset.id)
                 if (parseInt(doge.dataset.id) === parseInt(dog.id)) {
                     console.log("match")
                     doge.parentElement.parentElement.innerHTML = `
@@ -82,6 +82,7 @@ function submitHander() {
                 }
             }
         })
+        form.reset()    
         form.querySelector("#id-field").remove()
 
     })
