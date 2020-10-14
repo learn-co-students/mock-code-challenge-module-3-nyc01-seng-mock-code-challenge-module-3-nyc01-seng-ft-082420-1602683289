@@ -49,6 +49,7 @@ function submitHandler() {
         let dogBreed = form.breed.value
         let dogSex = form.sex.value
         updateDog(dogId, dogName, dogBreed, dogSex)
+        form.name.id = ""
         form.reset()
     })
 }
