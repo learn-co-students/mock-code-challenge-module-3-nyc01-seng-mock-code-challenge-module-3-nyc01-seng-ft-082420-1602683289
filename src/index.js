@@ -34,6 +34,8 @@ function editDog() {
     document.addEventListener("click", e=> {
         if (e.target.matches(".edit")) {
             //form.name.value = e.target.nextSibling.textContent
+
+            //adding hidden 'id' attribute to form based on which edit button was pressed
             const hiddenId = document.createElement("input")
             hiddenId.setAttribute("name", "id");
             hiddenId.setAttribute("value", `${e.target.dataset.id}`);
@@ -62,7 +64,24 @@ function submitHander() {
             },
             body: JSON.stringify(body)
         }
-        //fetch(`http://localhost:3000/${form.id.value}`)
+        fetch(`http://localhost:3000/dogs/${form.id.value}`, options)
+        .then(res => res.json())
+        .then(dog => {
+            console.log(dog.name, dog.breed, dog.sex, dog.id)
+            const allDogs = document.querySelectorAll(".edit")
+            for (doge of allDogs) {
+                console.log(doge.dataset.id)
+                if (parseInt(doge.dataset.id) === parseInt(dog.id)) {
+                    console.log("match")
+                    doge.parentElement.parentElement.innerHTML = `
+                    <td>${dog.name}</td>
+                    <td>${dog.breed}</td>
+                    <td>${dog.sex}</td>
+                    <td><button class="edit" data-id=${dog.id}>Edit</button></td></tr>`
+                    
+                }
+            }
+        })
         form.querySelector("#id-field").remove()
 
     })
