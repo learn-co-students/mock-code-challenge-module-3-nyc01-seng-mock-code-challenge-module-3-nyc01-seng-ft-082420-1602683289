@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(_dog => {
                 getDogs()
             })
+            form.reset()
         })
         
     }
